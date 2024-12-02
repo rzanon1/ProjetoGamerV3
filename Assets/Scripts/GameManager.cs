@@ -13,7 +13,11 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI HighScoreText;
+    public TextMeshProUGUI HardText;
+    public TextMeshProUGUI NormalText;
+    public TextMeshProUGUI StartText;
     public Button retryButton;
+    public Button hardButton;
 
 
     private Player player;
@@ -45,9 +49,19 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        gameSpeed = 0f;
+        enabled = false;
+
         player = FindObjectOfType<Player>();
         spawner = FindObjectOfType<Spawner>();
-        NewGame();
+        player.gameObject.SetActive(false);
+        spawner.gameObject.SetActive(false);
+        gameOverText.gameObject.SetActive(false);
+        retryButton.gameObject.SetActive(true);
+        hardButton.gameObject.SetActive(true);
+        HardText.gameObject.SetActive(true);
+        NormalText.gameObject.SetActive(true);
+        StartText.gameObject.SetActive(true);
     }
 
     public void NewGame()
@@ -68,6 +82,37 @@ public class GameManager : MonoBehaviour
         spawner.gameObject.SetActive(true);
         gameOverText.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
+        hardButton.gameObject.SetActive(false);
+        HardText.gameObject.SetActive(false);
+        NormalText.gameObject.SetActive(false);
+        StartText.gameObject.SetActive(false);
+
+        UpdateHighScore();
+    }
+
+    public void HardGame()
+    {
+        Obstacle[] obstacles = FindObjectsOfType<Obstacle>();
+        foreach (var obstacle in obstacles)
+        {
+
+            Destroy(obstacle.gameObject);
+
+        }
+
+        gameSpeed = initialGameSpeed * 3;
+        gameSpeedIncrease = 0.2f;
+        score = 0f;
+        enabled = true;
+
+        player.gameObject.SetActive(true);
+        spawner.gameObject.SetActive(true);
+        gameOverText.gameObject.SetActive(false);
+        retryButton.gameObject.SetActive(false);
+        hardButton.gameObject.SetActive(false);
+        HardText.gameObject.SetActive(false);
+        NormalText.gameObject.SetActive(false);
+        StartText.gameObject.SetActive(false);
 
         UpdateHighScore();
     }
@@ -81,6 +126,9 @@ public class GameManager : MonoBehaviour
         spawner.gameObject.SetActive(false);
         gameOverText.gameObject.SetActive(true);
         retryButton.gameObject.SetActive(true);
+        hardButton.gameObject.SetActive(true);
+        HardText.gameObject.SetActive(true);
+        NormalText.gameObject.SetActive(true);
 
         UpdateHighScore();
 
