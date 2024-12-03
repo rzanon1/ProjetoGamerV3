@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
         // Verifica se o jogador está no chão usando a propriedade `isGrounded` do CharacterController.
         if (character.isGrounded)
         {
-            // Reseta a direção para apenas a gravidade ao tocar o chão.
+            // Reseta a direção para não aplicar a gravidade enquanto tocar o chão.
             direction = Vector3.down;
 
             // Verifica se o botão "Jump" foi pressionado.
