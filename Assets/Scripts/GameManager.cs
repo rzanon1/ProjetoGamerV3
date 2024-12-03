@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
 
         // Configurações iniciais para um novo jogo.
         gameSpeed = initialGameSpeed;
+        gameSpeedIncrease = 0.5f;
         score = 0f;
         enabled = true;
 
@@ -100,7 +101,7 @@ public class GameManager : MonoBehaviour
 
         // Ajusta a velocidade e o incremento para o modo difícil.
         gameSpeed = initialGameSpeed * 3;
-        gameSpeedIncrease = 0.2f;
+        gameSpeedIncrease = 0.8f;
         score = 0f;
         enabled = true;
 
