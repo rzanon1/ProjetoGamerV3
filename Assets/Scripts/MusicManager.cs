@@ -2,16 +2,17 @@ using UnityEngine;
 
 public class BackgroundMusic : MonoBehaviour
 {
-    private AudioSource audioSource;
+    private AudioSource audioSource; // Referência ao componente AudioSource que controla a música de fundo.
 
     void Awake()
     {
-        // Obtém o componente Audio Source
+        // Obtém o componente AudioSource do GameObject ao qual o script está anexado.
         audioSource = GetComponent<AudioSource>();
     }
 
     public void PlayMusic()
     {
+        // Toca a música apenas se ela não estiver tocando atualmente.
         if (!audioSource.isPlaying)
         {
             audioSource.Play();
@@ -20,6 +21,7 @@ public class BackgroundMusic : MonoBehaviour
 
     public void StopMusic()
     {
+        // Para a música apenas se ela estiver tocando.
         if (audioSource.isPlaying)
         {
             audioSource.Stop();
@@ -28,6 +30,7 @@ public class BackgroundMusic : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        audioSource.volume = Mathf.Clamp01(volume); // Garante que o volume está entre 0 e 1
+        // Define o volume do áudio, garantindo que ele esteja no intervalo válido (entre 0 e 1).
+        audioSource.volume = Mathf.Clamp01(volume);
     }
 }

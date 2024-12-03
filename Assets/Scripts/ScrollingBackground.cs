@@ -19,3 +19,6 @@ public class ScrollingBackground : MonoBehaviour
         meshRenderer.material.mainTextureOffset += Vector2.right * speed * Time.deltaTime;
     }
 }
+
+
+// Mesma lógica do ground ^^
