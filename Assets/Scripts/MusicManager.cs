@@ -2,11 +2,23 @@ using UnityEngine;
 
 public class BackgroundMusic : MonoBehaviour
 {
+    public static BackgroundMusic Instance { get; private set; } // Singleton para acesso global.
+
     private AudioSource audioSource; // Referência ao componente AudioSource que controla a música de fundo.
 
-    void Awake()
+    private void Awake()
     {
-        // Obtém o componente AudioSource do GameObject ao qual o script está anexado.
+        // Configura o Singleton.
+        if (Instance == null)
+        {
+            Instance = this; // Define esta instância como a única.
+        }
+        else
+        {
+            Destroy(gameObject); // Remove duplicatas do Singleton.
+        }
+
+        // Obtém o componente AudioSource.
         audioSource = GetComponent<AudioSource>();
     }
 
